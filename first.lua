@@ -58,6 +58,21 @@ function first_primes(n)
     return formatted
 end
 
+function for_loop(a, b, f)    
+    while a <= b do
+        f()
+        a = a + 1
+    end
+end
+
+function test_for_loop()    
+    function init()
+        print ("init");
+    end
+
+    for_loop(1, 3, init)       
+end
+
 --print(ends_in_3(3))
 --print(ends_in_3(4))
 --print(ends_in_3(53))
@@ -71,4 +86,6 @@ end
 -- print(format_is_prime(23))
 -- print(format_is_prime(25))
 
-print(first_primes(10))
+--print(first_primes(10))
+
+print(test_for_loop())
