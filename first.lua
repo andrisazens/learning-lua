@@ -20,24 +20,34 @@ function is_prime(num)
             i = i + 1            
         end
         
-        local primeResult = ''
-        if isPrime == false then 
-            primeResult = primeResult .. " not"
-        end
-        
-        return tostring(num) .. ' is' .. primeResult .. ' prime' 
+        return isPrime 
     end
+end
+
+function format_is_prime(num)
+    local isPrime = is_prime(num)
+
+    local primeResult = ''
+    if isPrime == false then 
+        primeResult = primeResult .. " not"
+    end
+      
+    return tostring(num) .. ' is' .. primeResult .. ' prime' 
+end
+
+function first_primes(n)
+    
 end
 
 --print(ends_in_3(3))
 --print(ends_in_3(4))
 --print(ends_in_3(53))
 
-print(is_prime(1))
-print(is_prime(2))
-print(is_prime(3))
-print(is_prime(4))
-print(is_prime(5))
-print(is_prime(10))
-print(is_prime(23))
-print(is_prime(25))
+print(format_is_prime(1))
+print(format_is_prime(2))
+print(format_is_prime(3))
+print(format_is_prime(4))
+print(format_is_prime(5))
+print(format_is_prime(10))
+print(format_is_prime(23))
+print(format_is_prime(25))
