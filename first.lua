@@ -73,6 +73,21 @@ function test_for_loop()
     for_loop(1, 3, init)       
 end
 
+function reduce(max, init, f)
+    local total = 0
+    for i = 1, max do
+        total = f(total, i)
+    end
+    
+    return total
+end
+
+function add(prev, next)
+    return prev + next       
+end
+
+--print(reduce(5, 0, add))
+
 --print(ends_in_3(3))
 --print(ends_in_3(4))
 --print(ends_in_3(53))
@@ -88,4 +103,4 @@ end
 
 --print(first_primes(10))
 
-print(test_for_loop())
+--print(test_for_loop())
