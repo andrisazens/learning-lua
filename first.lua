@@ -74,9 +74,10 @@ function test_for_loop()
 end
 
 function reduce(max, init, f)
-    local total = 0
+    local total = init
     for i = 1, max do
         total = f(total, i)
+        --print(total)
     end
     
     return total
@@ -86,7 +87,24 @@ function add(prev, next)
     return prev + next       
 end
 
---print(reduce(5, 0, add))
+function mult(prev, next)
+    print(prev)
+    print(next)
+    return prev * next;           
+end
+
+function factorial(num)
+    -- local result = 0
+    -- for i = 1, num do
+    --     result = result + reduce(i - 1, i, add)
+    -- end
+    
+    -- return result
+    return reduce(num, 0, mult)
+end
+
+print(factorial(5))
+--print(reduce(3, 0, add))
 
 --print(ends_in_3(3))
 --print(ends_in_3(4))
