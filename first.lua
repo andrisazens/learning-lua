@@ -94,13 +94,19 @@ function mult(prev, next)
 end
 
 function factorial(num)
+
+    if (num == 0) then
+        return 1
+    else
+        return num *   
+    end
     -- local result = 0
     -- for i = 1, num do
     --     result = result + reduce(i - 1, i, add)
     -- end
     
     -- return result
-    return reduce(num, 0, mult)
+    --return reduce(num, 0, mult)
 end
 
 print(factorial(5))
