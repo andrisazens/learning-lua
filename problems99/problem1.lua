@@ -37,6 +37,22 @@ function p05(list)
     return result
 end
 
+-- P06 (*) Find out whether a list is a palindrome. A palindrome can be read forward or backward; e.g. (x a m a x).
+function p06(list)
+    local reversed, i, result = p05(list), 0, true    
+    
+    while i < #list do
+        if (list[i] ~= reversed[i]) then
+            result = false
+            break
+        end
+        i = i + 1
+    end 
+    
+    return result
+end
+
+-- helpers --
 function table_to_string(t)
     local result = {}
     for k, v in pairs(t) do
@@ -60,6 +76,7 @@ setmetatable(p05result, mt)
 --print(p02result)
 --print(p03({'a', 'b', 'c', 'd', 'e'}, 3))
 --print(p04({'a', 'b', 'c', 'd'}))
+--print(p05result)
 
-print(p05result)
+print(p06({'x', 'a', 'm', 'a', 'x'}))
 
