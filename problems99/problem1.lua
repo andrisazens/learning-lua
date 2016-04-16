@@ -40,7 +40,7 @@ end
 -- P06 (*) Find out whether a list is a palindrome. A palindrome can be read forward or backward; e.g. (x a m a x).
 function p06(list)
     local reversed, i, result = p05(list), 0, true    
-    
+        
     while i < #list do
         if (list[i] ~= reversed[i]) then
             result = false
@@ -48,6 +48,25 @@ function p06(list)
         end
         i = i + 1
     end 
+        
+    return result
+end
+
+-- P07 (**) Flatten a nested list structure. Transform a list, possibly holding lists as elements into a `flat' list by replacing each list with its elements (recursively).
+-- Example: * (my-flatten '(a (b (c d) e))) (A B C D E)
+function p07(list)
+    local result = {}
+        
+    for i = 1, #list do        
+        if (type(list[i]) ~= "table") then            
+            result[#result + 1] = list[i]
+        else
+            local flatten = p07(list[i])
+            for k = 1, #flatten do
+                result[#result + 1] = flatten[k]
+            end            
+        end     
+    end
     
     return result
 end
@@ -72,11 +91,15 @@ setmetatable(p02result, mt)
 local p05result = p05({'a', 'b', 'c', 'd', 'e'})
 setmetatable(p05result, mt)
 
+local p07result = p07({'a', {'b', { 'c', 'd'}, 'e'}})
+setmetatable(p07result, mt)
+
 --print(p01({'a', 'b', 'c', 'd'}))
 --print(p02result)
 --print(p03({'a', 'b', 'c', 'd', 'e'}, 3))
 --print(p04({'a', 'b', 'c', 'd'}))
 --print(p05result)
+--print(p06({'x', 'a', 'm', 'a', 'x'}))
 
-print(p06({'x', 'a', 'm', 'a', 'x'}))
+print(p07result)
 
