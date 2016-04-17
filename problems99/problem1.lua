@@ -71,6 +71,31 @@ function p07(list)
     return result
 end
 
+-- P08 (**) Eliminate consecutive duplicates of list elements. If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.
+-- Example: * (compress '(a a a a b c c a a d e e e e)) => (A B C A D E)
+
+function p08(list)
+    local result = {}
+
+    for i = 1, #list do
+        if not isInArray(result, list[i]) then
+            result[#result + 1] = list[i]
+        end
+    end
+    
+    return result
+end
+
+function isInArray (arr, search)
+    for index, value in ipairs (arr) do
+        if value == search then
+            return true
+        end
+    end
+
+    return false
+end
+
 -- helpers --
 function table_to_string(t)
     local result = {}
@@ -94,12 +119,15 @@ setmetatable(p05result, mt)
 local p07result = p07({'a', {'b', { 'c', 'd'}, 'e'}})
 setmetatable(p07result, mt)
 
+local p08result = p08({'a', 'b', 'b', 'c', 'a', 'b'})
+setmetatable(p08result, mt)
+
 --print(p01({'a', 'b', 'c', 'd'}))
 --print(p02result)
 --print(p03({'a', 'b', 'c', 'd', 'e'}, 3))
 --print(p04({'a', 'b', 'c', 'd'}))
 --print(p05result)
 --print(p06({'x', 'a', 'm', 'a', 'x'}))
-
-print(p07result)
+--print(p07result)
+print(p08result)
 
