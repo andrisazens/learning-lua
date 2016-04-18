@@ -90,17 +90,21 @@ end
 --  Example: * (pack '(a a a a b c c a a d e e e e)) => ((A A A A) (B) (C C) (A A) (D) (E E E E))
 
 function p09(list)
-    local result = {}
+    local result, prev, subCount = {}, nil, 1
     
     for i = 1, #list do
-        if result[list[i]] == nil then
-            result[list[i]] = {}
-        end 
-    
-        result[list[i]][#result[list[i]] + 1] = list[i]        
+        local current = list[i]
+        
+        if current ~= prev then            
+            result[#result + 1] = { }
+            subCount = 1
+        end
+        
+        result[#result][subCount] = current
+        subCount = subCount + 1   
+        prev = current            
     end
-    
-    print(result)
+        
     return result
 end
 
@@ -124,8 +128,22 @@ function table_to_string(t)
     return table.concat(result, " ")
 end
 
+-- TODO: remove trailing comma
+function dump(o)
+   if type(o) == 'table' then
+      local s = '{'
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end         
+         s = s .. '['..k..']=' .. dump(v) .. ','
+      end
+      return s .. '}'
+   else
+      return tostring(o)
+   end
+end
+
 mt = {
-    __tostring = table_to_string
+    __tostring = dump
 }
 
 local p02result = p02({'a', 'b', 'c', 'd'}) 
@@ -140,7 +158,7 @@ setmetatable(p07result, mt)
 local p08result = p08({'a', 'b', 'b', 'c', 'a', 'b'})
 setmetatable(p08result, mt)
 
-local p09result = p09({'a'})
+local p09result = p09({'a', 'a', 'a', 'b', 'b', 'a'})
 setmetatable(p09result, mt)
 
 --print(p01({'a', 'b', 'c', 'd'}))
