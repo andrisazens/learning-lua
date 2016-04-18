@@ -86,6 +86,24 @@ function p08(list)
     return result
 end
 
+-- P09 (**) Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they should be placed in separate sublists.
+--  Example: * (pack '(a a a a b c c a a d e e e e)) => ((A A A A) (B) (C C) (A A) (D) (E E E E))
+
+function p09(list)
+    local result = {}
+    
+    for i = 1, #list do
+        if result[list[i]] == nil then
+            result[list[i]] = {}
+        end 
+    
+        result[list[i]][#result[list[i]] + 1] = list[i]        
+    end
+    
+    print(result)
+    return result
+end
+
 function isInArray (arr, search)
     for index, value in ipairs (arr) do
         if value == search then
@@ -122,6 +140,9 @@ setmetatable(p07result, mt)
 local p08result = p08({'a', 'b', 'b', 'c', 'a', 'b'})
 setmetatable(p08result, mt)
 
+local p09result = p09({'a'})
+setmetatable(p09result, mt)
+
 --print(p01({'a', 'b', 'c', 'd'}))
 --print(p02result)
 --print(p03({'a', 'b', 'c', 'd', 'e'}, 3))
@@ -129,5 +150,6 @@ setmetatable(p08result, mt)
 --print(p05result)
 --print(p06({'x', 'a', 'm', 'a', 'x'}))
 --print(p07result)
-print(p08result)
+--print(p08result)
+print(p09result)
 
