@@ -108,6 +108,22 @@ function p09(list)
     return result
 end
 
+-- P10 (*) Run-length encoding of a list. Use the result of problem P09 to implement the so-called run-length encoding data compression method. 
+--   Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E.
+-- Example: * (encode '(a a a a b c c a a d e e e e)) => ((4 A) (1 B) (2 C) (2 A) (1 D)(4 E))
+
+function p10(list)
+    local dups, result = p09(list), {}
+    for i = 1, #dups do
+        local subList = {}
+        subList[1] = #dups[i]
+        subList[2] = dups[i][1]
+        result[#result + 1] = subList
+    end
+    
+    return result
+end
+
 function isInArray (arr, search)
     for index, value in ipairs (arr) do
         if value == search then
@@ -161,6 +177,9 @@ setmetatable(p08result, mt)
 local p09result = p09({'a', 'a', 'a', 'b', 'b', 'a'})
 setmetatable(p09result, mt)
 
+local p10result = p10({'a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'})
+setmetatable(p10result, mt)
+
 --print(p01({'a', 'b', 'c', 'd'}))
 --print(p02result)
 --print(p03({'a', 'b', 'c', 'd', 'e'}, 3))
@@ -169,5 +188,6 @@ setmetatable(p09result, mt)
 --print(p06({'x', 'a', 'm', 'a', 'x'}))
 --print(p07result)
 --print(p08result)
-print(p09result)
+--print(p09result)
+print(p10result)
 
