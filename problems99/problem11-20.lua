@@ -1,0 +1,64 @@
+-- P11 (*) Modified run-length encoding. Modify the result of problem P10 in such a way that if an element has no duplicates 
+--   it is simply copied into the result list. Only elements with duplicates are transferred as (N E) lists.
+-- Example: * (encode-modified '(a a a a b c c a a d e e e e)) => ((4 A) B (2 C) (2 A) D (4 E))
+
+-- TODO: copy from problem1.lua
+function p09(list)
+    local result, prev, subCount = {}, nil, 1
+    
+    for i = 1, #list do
+        local current = list[i]
+        
+        if current ~= prev then            
+            result[#result + 1] = { }
+            subCount = 1
+        end
+        
+        result[#result][subCount] = current
+        subCount = subCount + 1   
+        prev = current            
+    end
+        
+    return result
+end
+
+function p11(list)
+    local dups, result = p09(list), {}
+    for i = 1, #dups do
+        local duplicatesLen, firstElem = #dups[i], dups[i][1]         
+    
+        if (duplicatesLen == 1) then
+            result[#result + 1] = firstElem 
+        else
+            local subList = {}
+            subList[1] = duplicatesLen
+            subList[2] = firstElem
+            result[#result + 1] = subList
+        end           
+    end
+    
+    return result
+end
+
+-- TODO: remove trailing comma
+function dump(o)
+   if type(o) == 'table' then
+      local s = '{'
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end         
+         s = s .. '['..k..']=' .. dump(v) .. ','
+      end
+      return s .. '}'
+   else
+      return tostring(o)
+   end
+end
+
+mt = {
+    __tostring = dump
+}
+
+local p11result = p11({'a', 'a', 'a', 'b', 'c', 'c' })
+setmetatable(p11result, mt)
+
+print(p11result)
