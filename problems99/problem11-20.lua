@@ -1,3 +1,15 @@
+-- P14 (*) Duplicate the elements of a list. Example: * (dupli '(a b c c d)) => (A A B B C C C C D D)
+
+function p14(list)
+    local result = {}
+    for i = 1, #list do
+        result[#result + 1] = list[i]
+        result[#result + 1] = list[i]
+    end
+    
+    return result
+end
+
 -- P12 (**) Decode a run-length encoded list. Given a run-length code list generated as specified in problem P11. Construct its uncompressed version.
 function p12(list)
     local result = {}
@@ -85,5 +97,9 @@ setmetatable(p11result, mt)
 local p12result = p12({{3, 'a'}, {'b'}, {2,'c'}})
 setmetatable(p12result, mt)
 
-print(p11result)
-print(p12result)
+local p14result = p14({'a', 'b', 'c', 'c'})
+setmetatable(p14result, mt)
+
+--print(p11result)
+--print(p12result)
+print(p14result)
