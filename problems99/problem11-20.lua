@@ -1,10 +1,25 @@
+-- P15 (**) Replicate the elements of a list a given number of times. Example: * (repli '(a b c) 3) => (A A A B B B C C C)
+
+function p15(list, timesToDupli)
+    local result = {}
+            
+    for i = 1, #list do        
+        for j = 1, timesToDupli do
+            result[#result + 1] = list[i] 
+        end            
+    end            
+    
+    return result
+end
+
 -- P14 (*) Duplicate the elements of a list. Example: * (dupli '(a b c c d)) => (A A B B C C C C D D)
 
 function p14(list)
     local result = {}
     for i = 1, #list do
-        result[#result + 1] = list[i]
-        result[#result + 1] = list[i]
+        for j = 1, 2 do
+            result[#result + 1] = list[i]
+        end        
     end
     
     return result
@@ -100,6 +115,10 @@ setmetatable(p12result, mt)
 local p14result = p14({'a', 'b', 'c', 'c'})
 setmetatable(p14result, mt)
 
+local p15result = p15({'a', 'b'}, 3)
+setmetatable(p15result, mt)
+
 --print(p11result)
 --print(p12result)
-print(p14result)
+--print(p14result)
+print(p15result)
