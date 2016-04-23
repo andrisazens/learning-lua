@@ -1,3 +1,17 @@
+-- P16 (**) Drop every N'th element from a list. Example: * (drop '(a b c d e f g h i k) 3) => (A B D E G H K)
+
+function p16(list, dropEveryIndex)
+    local result = {}
+    
+    for i = 1, #list do
+        if i % dropEveryIndex ~= 0 then
+            result[#result + 1] = list[i]
+        end
+    end
+    
+    return result
+end
+
 -- P15 (**) Replicate the elements of a list a given number of times. Example: * (repli '(a b c) 3) => (A A A B B B C C C)
 
 function p15(list, timesToDupli)
@@ -118,7 +132,11 @@ setmetatable(p14result, mt)
 local p15result = p15({'a', 'b'}, 3)
 setmetatable(p15result, mt)
 
+local p16result = p16({'a', 'b', 'c', 'd', 'd'}, 2)
+setmetatable(p16result, mt)
+
 --print(p11result)
 --print(p12result)
 --print(p14result)
-print(p15result)
+--print(p15result)
+print(p16result)
