@@ -1,3 +1,20 @@
+-- P17 (*) Split a list into two parts; the length of the first part is given. Do not use any predefined predicates.
+--  Example: * (split '(a b c d e f g h i k) 3) => ((A B C) (D E F G H I K))
+
+function p17(list, splitIndex)
+    local result = {{}, {}}
+    
+    for i = 1, #list do        
+        if i <= splitIndex then
+            result[1][#result[1] + 1] = list[i]
+        else
+            result[2][#result[2] + 1] = list[i]
+        end
+    end
+        
+    return result
+end
+
 -- P16 (**) Drop every N'th element from a list. Example: * (drop '(a b c d e f g h i k) 3) => (A B D E G H K)
 
 function p16(list, dropEveryIndex)
@@ -135,8 +152,11 @@ setmetatable(p15result, mt)
 local p16result = p16({'a', 'b', 'c', 'd', 'd'}, 2)
 setmetatable(p16result, mt)
 
+local p17result = p17({'a', 'b', 'c', 'd', 'e'}, 3)
+setmetatable(p17result, mt)
+
 --print(p11result)
 --print(p12result)
 --print(p14result)
 --print(p15result)
-print(p16result)
+print(p17result)
