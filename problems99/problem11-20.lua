@@ -1,3 +1,19 @@
+-- P18 (**) Extract a slice from a list. Given two indices, I and K, the slice is the list containing the elements between
+-- the I'th and K'th element of the original list (both limits included). Start counting the elements with 1.
+-- Example: * (slice '(a b c d e f g h i k) 3 7) => (C D E F G)
+
+function p18(list, startIndex, endIndex)
+    local result = {}
+    
+    for i = 1, #list do
+        if i >= startIndex and i <= endIndex then
+            result[#result + 1] = list[i]
+        end
+    end
+    
+    return result
+end
+
 -- P17 (*) Split a list into two parts; the length of the first part is given. Do not use any predefined predicates.
 --  Example: * (split '(a b c d e f g h i k) 3) => ((A B C) (D E F G H I K))
 
@@ -155,8 +171,12 @@ setmetatable(p16result, mt)
 local p17result = p17({'a', 'b', 'c', 'd', 'e'}, 3)
 setmetatable(p17result, mt)
 
+local p18result = p18({'a', 'b', 'c', 'd', 'e'}, 2, 4)
+setmetatable(p18result, mt)
+
 --print(p11result)
 --print(p12result)
 --print(p14result)
 --print(p15result)
-print(p17result)
+--print(p17result)
+print(p18result)
