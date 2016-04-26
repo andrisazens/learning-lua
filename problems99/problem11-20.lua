@@ -1,3 +1,17 @@
+-- P19 (**) Rotate a list N places to the left. Examples: * (rotate '(a b c d e f g h) 3) => (D E F G H A B C), * (rotate '(a b c d e f g h) -2) => (G H A B C D E F)
+function p19(list, index)
+    local result = {}
+    
+    for i = index + 1, #list do
+        result[#result + 1] = list[i]
+    end
+    for i = 1, index do
+        result[#result + 1] = list[i]
+    end
+    
+    return result
+end
+
 -- P18 (**) Extract a slice from a list. Given two indices, I and K, the slice is the list containing the elements between
 -- the I'th and K'th element of the original list (both limits included). Start counting the elements with 1.
 -- Example: * (slice '(a b c d e f g h i k) 3 7) => (C D E F G)
@@ -174,9 +188,15 @@ setmetatable(p17result, mt)
 local p18result = p18({'a', 'b', 'c', 'd', 'e'}, 2, 4)
 setmetatable(p18result, mt)
 
+local p19result = p19({'a', 'b', 'c', 'd', 'e'}, 2)
+--local p19result = p19({'a', 'b', 'c', 'd', 'e'}, -2)
+setmetatable(p19result, mt)
+
 --print(p11result)
 --print(p12result)
 --print(p14result)
 --print(p15result)
 --print(p17result)
-print(p18result)
+--print(p18result)
+
+print(p19result)
