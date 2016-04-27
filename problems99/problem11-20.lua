@@ -2,11 +2,20 @@
 function p19(list, index)
     local result = {}
     
-    for i = index + 1, #list do
-        result[#result + 1] = list[i]
-    end
-    for i = 1, index do
-        result[#result + 1] = list[i]
+    if (index > 0) then   
+        for i = index + 1, #list do
+            result[#result + 1] = list[i]
+        end
+        for i = 1, index do
+            result[#result + 1] = list[i]
+        end
+    else
+        for i = #list + index, #list do
+            result[#result + 1] = list[i]
+        end
+        for i = 1, -index do
+            result[#result + 1] = list[i]
+        end
     end
     
     return result
@@ -188,8 +197,8 @@ setmetatable(p17result, mt)
 local p18result = p18({'a', 'b', 'c', 'd', 'e'}, 2, 4)
 setmetatable(p18result, mt)
 
-local p19result = p19({'a', 'b', 'c', 'd', 'e'}, 2)
---local p19result = p19({'a', 'b', 'c', 'd', 'e'}, -2)
+--local p19result = p19({'a', 'b', 'c', 'd', 'e'}, 2)
+local p19result = p19({'a', 'b', 'c', 'd', 'e'}, -2)
 setmetatable(p19result, mt)
 
 --print(p11result)
