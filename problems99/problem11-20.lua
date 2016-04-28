@@ -1,3 +1,16 @@
+-- P20 (*) Remove the K'th element from a list. Example:  (remove-at '(a b c d) 2) => (A C D)
+function p20(list, index)
+    local result = {}
+    
+    for i = 1, #list do
+        if i ~= index then
+            result[#result + 1] = list[i]
+        end
+    end
+    
+    return result
+end
+
 -- P19 (**) Rotate a list N places to the left. Examples: * (rotate '(a b c d e f g h) 3) => (D E F G H A B C), * (rotate '(a b c d e f g h) -2) => (G H A B C D E F)
 function p19(list, index)
     local result = {}
@@ -201,11 +214,14 @@ setmetatable(p18result, mt)
 local p19result = p19({'a', 'b', 'c', 'd', 'e'}, -2)
 setmetatable(p19result, mt)
 
+local p20result = p20({'a', 'b', 'c', 'd'}, 2)
+setmetatable(p20result, mt)
+
 --print(p11result)
 --print(p12result)
 --print(p14result)
 --print(p15result)
 --print(p17result)
 --print(p18result)
-
-print(p19result)
+--print(p19result)
+print(p20result)
