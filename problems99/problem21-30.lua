@@ -1,3 +1,20 @@
+-- P22 (*) Create a list containing all integers within a given range. If first argument is smaller than second, produce a list in decreasing order.
+-- Example: * (range 4 9) => (4 5 6 7 8 9)
+
+function p22(from, to)
+    local result, increment = {}, 1
+    
+    if from > to then        
+        increment = -1;    
+    end
+    
+    for i = from, to, increment do
+        result[#result + 1] = i
+    end
+    
+    return result
+end
+
 -- P21 (*) Insert an element at a given position into a list. Example: * (insert-at 'alfa '(a b c d) 2) => (A ALFA B C D)
 
 function p21(elem, list, index)
@@ -34,4 +51,9 @@ mt = {
 local p21result = p21('test', {'a', 'b', 'c', 'd'}, 2)
 setmetatable(p21result, mt)
 
-print(p21result)
+--local p22result = p22(4, 7)
+local p22result = p22(7, 4)
+setmetatable(p22result, mt)
+
+--print(p21result)
+print(p22result)
