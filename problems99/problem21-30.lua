@@ -1,3 +1,20 @@
+--P23 (**) Extract a given number of randomly selected elements from a list.
+-- The selected items shall be returned in a list. Example: * (rnd-select '(a b c d e f g h) 3) => (E D A)
+function p23(list, count)
+    local result, usedIndexes = {}, {}
+        
+    while #result < count do
+        --math.randomseed(3)
+        local nextRand = math.random(1, #list)
+        if not isInArray(usedIndexes, nextRand) then
+            result[#result +1] = list[nextRand]
+            usedIndexes[#usedIndexes + 1] = nextRand
+        end    
+    end    
+    
+    return result
+end
+
 -- P22 (*) Create a list containing all integers within a given range. If first argument is smaller than second, produce a list in decreasing order.
 -- Example: * (range 4 9) => (4 5 6 7 8 9)
 
@@ -31,6 +48,16 @@ function p21(elem, list, index)
     return result 
 end
 
+function isInArray (arr, search)
+    for index, value in ipairs (arr) do
+        if value == search then
+            return true
+        end
+    end
+
+    return false
+end
+
 function dump(o)
    if type(o) == 'table' then
       local s = '{'
@@ -55,5 +82,9 @@ setmetatable(p21result, mt)
 local p22result = p22(7, 4)
 setmetatable(p22result, mt)
 
+local p23result = p23({'a', 'b', 'c', 'd', 'e', 'f'}, 2)
+setmetatable(p23result, mt)
+
 --print(p21result)
-print(p22result)
+--print(p22result)
+print(p23result)
