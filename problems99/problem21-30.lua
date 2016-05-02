@@ -1,15 +1,22 @@
+-- P24 (*) Lotto: Draw N different random numbers from the set 1..M. The selected numbers shall be returned in a list.
+-- Example: * (lotto-select 6 49) => (23 1 17 33 21 37)
+function p24(count, maxNumber)
+    return p23(p22(1, maxNumber), count)
+end
+
 --P23 (**) Extract a given number of randomly selected elements from a list.
 -- The selected items shall be returned in a list. Example: * (rnd-select '(a b c d e f g h) 3) => (E D A)
 function p23(list, count)
     local result, usedIndexes = {}, {}
         
+    math.randomseed(os.time())        
     while #result < count do
-        --math.randomseed(3)
+        
         local nextRand = math.random(1, #list)
         if not isInArray(usedIndexes, nextRand) then
-            result[#result +1] = list[nextRand]
+            result[#result + 1] = list[nextRand]
             usedIndexes[#usedIndexes + 1] = nextRand
-        end    
+        end
     end    
     
     return result
@@ -85,6 +92,10 @@ setmetatable(p22result, mt)
 local p23result = p23({'a', 'b', 'c', 'd', 'e', 'f'}, 2)
 setmetatable(p23result, mt)
 
+local p24result = p24(4, 20)
+setmetatable(p24result, mt)
+
 --print(p21result)
 --print(p22result)
-print(p23result)
+--print(p23result)
+print(p24result)
