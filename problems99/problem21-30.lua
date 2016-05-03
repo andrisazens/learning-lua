@@ -1,3 +1,9 @@
+-- P25 (*) Generate a random permutation of the elements of a list.
+-- Example: * (rnd-permu '(a b c d e f)) => (B A D C E F)
+function p25(list)    
+    return p23(list, #list)
+end
+
 -- P24 (*) Lotto: Draw N different random numbers from the set 1..M. The selected numbers shall be returned in a list.
 -- Example: * (lotto-select 6 49) => (23 1 17 33 21 37)
 function p24(count, maxNumber)
@@ -95,7 +101,12 @@ setmetatable(p23result, mt)
 local p24result = p24(4, 20)
 setmetatable(p24result, mt)
 
+local p25result = p25({'a', 'b', 'c', 'd', 'e', 'f'})
+setmetatable(p25result, mt)
+
 --print(p21result)
 --print(p22result)
 --print(p23result)
-print(p24result)
+--print(p24result)
+
+print(p25result)
