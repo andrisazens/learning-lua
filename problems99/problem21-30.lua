@@ -5,8 +5,12 @@
 function p26(combinationCnt, list)
     local result, iter = {}, combinationCnt
     
+    for i = 1, #result - combinationCnt + 1 do
+        for j = 1
+    end
+    
     -- while iter < #list do
-    --     for i = 
+    --     for i = 1 
     -- end
     
     return result
