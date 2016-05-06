@@ -17,4 +17,29 @@ function p31(given)
     return result
 end
 
+-- P32 (**) Determine the greatest common divisor of two positive integer numbers.
+-- Use Euclid's algorithm. Example: * (gcd 36 63) 9
+function p32(first, second)
+    if (first == 0) then 
+        return second
+    end
+    
+    if (second == 0) then 
+        return first
+    end
+    
+    if (first < second) then
+        first, second = second, first
+    end
+        
+    local remainder = first % second    
+    if (remainder == 0) then
+        return second
+    else
+        return p32(second, remainder)
+    end
+end
+
 --print(tostring(p31(7)) .. " " tostring(p31(2)) .. " " .. tostring(p31(3)) .. " " .. tostring(p31(4)))
+print("p32 = " .. tostring(p32(36, 63)))
+
