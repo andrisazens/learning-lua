@@ -40,6 +40,13 @@ function p32(first, second)
     end
 end
 
+-- P33 (*) Determine whether two positive integer numbers are coprime. Two numbers are coprime if their greatest common divisor equals 1. 
+-- Example: * (coprime 35 64) -> true
+function p33(first, second)
+    return p32(first, second) == 1
+end
+
 --print(tostring(p31(7)) .. " " tostring(p31(2)) .. " " .. tostring(p31(3)) .. " " .. tostring(p31(4)))
 print("p32 = " .. tostring(p32(36, 63)))
+print("p33 = " .. tostring(p33(35, 64)))
 
