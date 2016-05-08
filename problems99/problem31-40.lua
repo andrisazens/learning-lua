@@ -46,7 +46,23 @@ function p33(first, second)
     return p32(first, second) == 1
 end
 
+-- P34 (**) Calculate Euler's totient function phi(m).
+--Euler's so-called totient function phi(m) is defined as the number of positive integers r (1 <= r < m) that are coprime to m.
+--Example: m = 10: r = 1,3,7,9; thus phi(m) = 4. Note the special case: phi(1) = 1. * (totient-phi 10) => 4
+function p34(input)
+    local result = 1
+    
+    for i = 2, input do
+        if p33(i, input) then
+            result = result + 1
+        end
+    end
+    
+    return result
+end
+
 --print(tostring(p31(7)) .. " " tostring(p31(2)) .. " " .. tostring(p31(3)) .. " " .. tostring(p31(4)))
 print("p32 = " .. tostring(p32(36, 63)))
 print("p33 = " .. tostring(p33(35, 64)))
+print("p34 = " .. tostring(p34(10)))
 
