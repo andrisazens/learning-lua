@@ -1,3 +1,20 @@
+function dump(o)
+   if type(o) == 'table' then
+      local s = '{'
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end         
+         s = s .. '['..k..']=' .. dump(v) .. ','
+      end
+      return s .. '}'
+   else
+      return tostring(o)
+   end
+end
+
+mt = {
+    __tostring = dump
+}
+
 -- P31 (**) Determine whether a given integer number is prime. Example: * (is-prime 7)
 function p31(given)
     if (given == 1) then
@@ -61,8 +78,38 @@ function p34(input)
     return result
 end
 
---print(tostring(p31(7)) .. " " tostring(p31(2)) .. " " .. tostring(p31(3)) .. " " .. tostring(p31(4)))
-print("p32 = " .. tostring(p32(36, 63)))
-print("p33 = " .. tostring(p33(35, 64)))
-print("p34 = " .. tostring(p34(10)))
+-- P35 (**) Determine the prime factors of a given positive integer. Construct a flat list containing the prime factors in ascending order.
+-- Example: * (prime-factors 315) => (3 3 5 7)
+function p35(input)
+    local result = {}
+    
+    -- TODO:
+    
+    return result
+end
 
+function p39(low, high)
+    local result = {}
+    
+    for i = low, high do
+        if p31(i) then
+            result[#result + 1] = i
+        end
+    end
+    
+    return result
+end
+
+local p35result = p35(315)
+setmetatable(p35result, mt)
+
+local p39result = p39(2, 9)
+setmetatable(p39result, mt)
+
+--print(tostring(p31(7)) .. " " tostring(p31(2)) .. " " .. tostring(p31(3)) .. " " .. tostring(p31(4)))
+--print("p32 = " .. tostring(p32(36, 63)))
+--print("p33 = " .. tostring(p33(35, 64)))
+--print("p34 = " .. tostring(p34(10)))
+
+--print("p35 = " .. p35result)
+print(p39result)
